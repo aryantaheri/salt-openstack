@@ -37,7 +37,8 @@
 
 {% set compute_states = compute_states + [
         "openstack.neutron.compute",
-        "openstack.nova.compute"
+        "openstack.neutron.network",
+	"openstack.nova.compute"
     ]
 %}
 
@@ -47,7 +48,12 @@
 %}
 
 
-{% set minion_states = [] %}
+{% set minion_states = [
+        "ntp",
+	"system"
+    ] 
+%}
+
 {% set minion_id = grains['id'] %}
 
 {% if minion_id == pillar['controller'] %}
