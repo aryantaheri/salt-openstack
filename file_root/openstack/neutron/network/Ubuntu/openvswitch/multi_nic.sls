@@ -19,9 +19,9 @@ openvswitch_interfaces_promisc_upstart_job:
   {% endif %}
 {% endfor %}
         end script
-    - require:
-{% for bridge in neutron['bridges'] %}
-  {% if neutron['bridges'][bridge] %}
-      - cmd: openvswitch_interface_{{ bridge }}_{{ neutron['bridges'][bridge] }}_up
-  {% endif %}
-{% endfor %}
+#    - require:
+# {# {% for bridge in neutron['bridges'] %}
+#  {% if neutron['bridges'][bridge] %}
+#      - cmd: openvswitch_interface_{{ bridge }}_{{ neutron['bridges'][bridge] }}_up
+#  {% endif %} 
+# {% endfor %} #}

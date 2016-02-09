@@ -29,5 +29,7 @@ openvswitch_interface_{{ bridge }}_{{ neutron['bridges'][bridge] }}_up:
     - name: "ip link set {{ neutron['bridges'][bridge] }} up promisc on"
     - require:
       - cmd: openvswitch_interface_{{ bridge }}_{{ neutron['bridges'][bridge] }}_add
+    - require_in:
+      - openstack.neutron.network.{{ grains['os'] }}.openvswitch.multi_nic
   {% endif %}
 {% endfor %}

@@ -198,6 +198,12 @@ def minion_ip(minion_id=None):
     '''
     return  __salt__['pillar.get']('hosts:%s' % minion_id, default='localhost')
 
+def minion_ip_inf(interface='p4p1'):
+    '''
+        returns the minion_ip of a minion based on the interface name. ip4_interfaces:p4p1
+    '''
+    return  __salt__['grains.get']('ip4_interfaces:%s' % interface, default=['localhost'])[0]
+
 
 def ml2_type_drivers():
     '''

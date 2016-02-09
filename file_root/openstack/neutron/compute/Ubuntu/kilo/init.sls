@@ -85,7 +85,8 @@ neutron_compute_ml2_conf:
           firewall_driver: "neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver"
         ovs:
           integration_bridge: {{ neutron['integration_bridge'] }}
-          local_ip: {{ salt['openstack_utils.minion_ip'](grains['id']) }}
+#          local_ip: {{ salt['openstack_utils.minion_ip'](grains['id']) }}
+          local_ip: {{ salt['openstack_utils.minion_ip_inf'](pillar['neutron']['tunneling']['interface']) }}
 {% if salt['openstack_utils.boolean_value'](neutron['tunneling']['enable']) %} 
         agent:
           tunnel_types: "{{ ','.join(neutron['tunneling']['types']) }}"
